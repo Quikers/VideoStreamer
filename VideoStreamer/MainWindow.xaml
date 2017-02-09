@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoStreamer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Background="#11FFFFFF" Opacity="0.4" AllowsTransparency="True" WindowStyle="None">
     <Grid>
-        
+        <Rectangle Fill="#FFF4F4F5" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" HorizontalAlignment="Stretch" Height="30"/>
+
     </Grid>
 </Window>

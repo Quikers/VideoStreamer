@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,8 +19,21 @@ namespace VideoStreamer {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
         public MainWindow() {
             InitializeComponent();
+        }
+
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            Window window = Application.Current.MainWindow;
+
+            if (e.ChangedButton != MouseButton.Left) return;
+
+            if (window.WindowState == WindowState.Maximized) {
+                window.WindowState = WindowState.Normal;
+            }
+
+            window.DragMove();
         }
     }
 }
