@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ThePirateBay;
+using Application = System.Windows.Application;
 
 namespace VideoStreamer {
     /// <summary>
@@ -22,18 +24,25 @@ namespace VideoStreamer {
 
         public MainWindow() {
             InitializeComponent();
+            GetSearch("the walking dead");
         }
 
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            Window window = Application.Current.MainWindow;
+        private void GetSearch(string search, int page = 0, int category = TorrentCategory.All, QueryOrder queryOrder = QueryOrder.BySeeds) {
+            List<Torrent> torrentList = Tpb.Search(
+                new Query(
+                    search,
+                    page,
+                    category,
+                    queryOrder
+                )
+            ).ToList();
 
-            if (e.ChangedButton != MouseButton.Left) return;
-
-            if (window.WindowState == WindowState.Maximized) {
-                window.WindowState = WindowState.Normal;
+            foreach (Torrent t in torrentList) {
+                label.Content = t.File;
             }
 
-            window.DragMove();
+            label.Content = torrentList[0].Name + "\nOK";
         }
+
     }
 }

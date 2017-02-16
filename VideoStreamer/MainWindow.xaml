@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoStreamer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="#11FFFFFF" Opacity="0.4" AllowsTransparency="True" WindowStyle="None">
-    <Grid>
-        <Rectangle Fill="#FFF4F4F5" Stroke="Black" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" HorizontalAlignment="Stretch" Height="30"/>
+        Title="MainWindow" Height="720" Width="1280" Background="#00000000" AllowsTransparency="True" WindowStyle="None" LocationChanged="Window_LocationChanged" Loaded="Window_Loaded">
+    <Grid Margin="7,0,7,7" Background="#442E2E2E">
+        <Rectangle Fill="#66111111" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" HorizontalAlignment="Stretch" Height="30" Stroke="#22FFFFFF"/>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0" Foreground="White" FontSize="16" FontWeight="Bold"/>
 
     </Grid>
 </Window>
