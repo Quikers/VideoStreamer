@@ -16,7 +16,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ThePirateBay;
+using Google.Apis;
+using Google.Apis.Auth;
+using Google.Apis.YouTube.v3.Data;
 using Application = System.Windows.Application;
+
+// API AUTH KEY: AIzaSyAlAG1wVpptbMc_os4o5Rb53NKmzY_h_io
 
 namespace VideoStreamer {
     /// <summary>
@@ -26,14 +31,12 @@ namespace VideoStreamer {
 
         public MainWindow() {
             InitializeComponent();
-            SourceInitialized += win_SourceInitialized;
+            SourceInitialized += (sender, e) => {
+                IntPtr handle = new WinInterop.WindowInteropHelper(this).Handle;
+                WinInterop.HwndSource.FromHwnd(handle)?.AddHook(WindowProc);
+            };
 
             GetSearch("the walking dead");
-        }
-
-        void win_SourceInitialized(object sender, EventArgs e) {
-            IntPtr handle = new WinInterop.WindowInteropHelper(this).Handle;
-            WinInterop.HwndSource.FromHwnd(handle).AddHook(WindowProc);
         }
 
         List<Label> labelList = new List<Label>();
