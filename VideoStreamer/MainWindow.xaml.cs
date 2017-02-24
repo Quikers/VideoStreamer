@@ -6,22 +6,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using WinInterop = System.Windows.Interop;
-using System.Runtime.InteropServices;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ThePirateBay;
-using Google.Apis;
-using Google.Apis.Auth;
-using Google.Apis.YouTube.v3.Data;
+
+using WinInterop = System.Windows.Interop;
 using Application = System.Windows.Application;
 
-// API AUTH KEY: AIzaSyAlAG1wVpptbMc_os4o5Rb53NKmzY_h_io
+using ThePirateBay;
+using Google.Apis;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.YouTube.v3.Data;
+
+/*
+API AUTH KEY | OAUTH CLIENT ID | OAUTH CLIENT SECRET
+AIzaSyAlAG1wVpptbMc_os4o5Rb53NKmzY_h_io
+473413528382-o47dqfolphujh05u2t6rtvcv9jdu9uic.apps.googleusercontent.com
+SsNg-MFWZfMtNyvGjBPkstB0
+*/
 
 namespace VideoStreamer {
     /// <summary>
@@ -36,7 +36,7 @@ namespace VideoStreamer {
                 WinInterop.HwndSource.FromHwnd(handle)?.AddHook(WindowProc);
             };
 
-            GetSearch("the walking dead");
+            //GetSearch("the walking dead");
         }
 
         List<Label> labelList = new List<Label>();
@@ -69,6 +69,11 @@ namespace VideoStreamer {
 
                 AddUIElementToPanel(labelList[labelList.Count - 1], WindowContent);
             }
+        }
+
+        private void button_Click (object sender, RoutedEventArgs e) {
+            YouTubeVideo video = new YouTubeVideo(textBox.Text);
+            label.Content = video.title;
         }
     }
 }
