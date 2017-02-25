@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Resources;
 using System.Threading;
 using Google.Apis;
 using Google.Apis.Services;
@@ -17,11 +18,20 @@ namespace VideoStreamer {
 
         private static YouTubeService ytService = Auth();
 
+        private static Stream GenerateStreamFromString (string s) {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
         private static YouTubeService Auth() {
             UserCredential credentials;
-            using (FileStream stream = new FileStream("youtube_client_secret.json", FileMode.Open, FileAccess.Read)) {
+            using (Stream stream = GenerateStreamFromString(Encoding.ASCII.GetString(Properties.Resources.client_secret))) {
                 credentials = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets, 
+                    GoogleClientSecrets.Load(stream).Secrets,
                     new[] { YouTubeService.Scope.YoutubeReadonly },
                     "user",
                     CancellationToken.None,

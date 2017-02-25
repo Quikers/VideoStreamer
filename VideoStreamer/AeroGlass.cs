@@ -26,13 +26,15 @@ namespace VideoStreamer {
         }
 
         private void WindowBar_MouseLeftButtonDown (object sender, MouseButtonEventArgs e) {
-            if (e.ChangedButton != MouseButton.Left) return;
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2) {
+                MaximizeWindow();
+            } else if (e.ChangedButton == MouseButton.Left) {
+                if (WindowState == WindowState.Maximized) {
+                    RestoreWindow();
+                }
 
-            if (WindowState == WindowState.Maximized) {
-                RestoreWindow();
+                DragMove();
             }
-
-            DragMove();
         }
 
         private void RestoreWindow(bool isDragging = true) {
