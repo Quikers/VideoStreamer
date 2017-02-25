@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoStreamer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" Background="#55000000" AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded" StateChanged="Window_StateChanged">
+        Title="MainWindow" Height="720" Width="1280" Background="#55000000" AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded">
     <Grid x:Name="Grid" Background="#88000000">
         <Grid x:Name="WindowBar" Background="#88000000" VerticalAlignment="Top" MouseLeftButtonDown="WindowBar_MouseLeftButtonDown" Height="30">
-            <Label x:Name="Title" Content="Title" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Stretch" Foreground="White" FontFamily="Century Gothic" />
+            <Label x:Name="Title" Content="Video Streamer" FontSize="15" VerticalAlignment="Top" Margin="27,0,90,0" HorizontalAlignment="Stretch" Foreground="White" FontFamily="Century Gothic" Height="30" />
+            <Button x:Name="btnMinimize" Content="___" FontSize="16" HorizontalAlignment="Right" Margin="1190,0,60,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="#FFDDDDDD" Background="#702E2E2E" BorderBrush="#70707070" Click="btnMinimize_Click"/>
+            <Button x:Name="btnMaximize" Content="🗖" FontSize="16" HorizontalAlignment="Right" Margin="1220,0,30,0" VerticalAlignment="Top" Width="30" Height="30" Click="btnMaximize_Click" Foreground="#FFDDDDDD" Background="#702E2E2E" BorderBrush="#70707070"/>
+            <Button x:Name="btnClose" Content="X" FontSize="16" HorizontalAlignment="Right" Margin="1250,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Click="btnClose_Click" Foreground="#FFDDDDDD" Background="#702E2E2E" BorderBrush="#70707070"/>
+            <Image x:Name="imgIcon" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30"/>
         </Grid>
         <Grid x:Name="WindowContent" HorizontalAlignment="Stretch" Margin="0,30,0,0" VerticalAlignment="Stretch">
-            <Button x:Name="button" Content="Get" HorizontalAlignment="Left" Margin="128,40,0,0" VerticalAlignment="Top" Width="39" Height="23" RenderTransformOrigin="0.321,0.45" Click="button_Click"/>
-            <Label x:Name="label" Content="[YouTube Video Title]" Foreground="White" HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="0,40,0,0"/>
+            <Button x:Name="btnGetVideo" Content="Get" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="39" Height="23" RenderTransformOrigin="0.321,0.45" Click="btnGetVideo_Click"/>
+            <Label x:Name="vidTitle" FontSize="20" Content="[YouTube Video Title]" Foreground="White" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="vidPublishedDate" Content="[YouTube Video Published Date]" Foreground="White" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="vidDescription" Content="[YouTube Video Description]" Foreground="White" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="fhbm3s3P0l4" VerticalAlignment="Top" Width="120" Margin="10,10,0,0" KeyDown="textBox_KeyDown"/>
         </Grid>
     </Grid>
 </Window>

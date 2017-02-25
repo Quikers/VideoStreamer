@@ -71,9 +71,38 @@ namespace VideoStreamer {
             }
         }
 
-        private void button_Click (object sender, RoutedEventArgs e) {
+        private void btnGetVideo_Click (object sender, RoutedEventArgs e) {
+            vidTitle.Content = "Loading...";
+            vidPublishedDate.Content = "";
+            vidDescription.Content = "";
+
             YouTubeVideo video = new YouTubeVideo(textBox.Text);
-            label.Content = video.title;
+            vidTitle.Content = video.title;
+            vidPublishedDate.Content = "Released on: " + video.publishedDate.ToString();
+            vidDescription.Content = video.description;
+        }
+
+        private void textBox_KeyDown (object sender, System.Windows.Input.KeyEventArgs e) {
+            if (e.Key == System.Windows.Input.Key.Enter) // If enter is pressed, click on btnGetVideo
+                btnGetVideo.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
+        }
+
+        private void btnClose_Click (object sender, RoutedEventArgs e) {
+            Environment.Exit(0);
+        }
+
+        private void btnMaximize_Click(object sender, RoutedEventArgs e) {
+            if (WindowState == WindowState.Maximized) {
+                RestoreWindow(false);
+                btnMaximize.Content = "🗖";
+            } else {
+                MaximizeWindow();
+                btnMaximize.Content = "-";
+            }
+        }
+
+        private void btnMinimize_Click (object sender, RoutedEventArgs e) {
+            WindowState = WindowState.Minimized;
         }
     }
 }

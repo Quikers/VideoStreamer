@@ -35,27 +35,23 @@ namespace VideoStreamer {
             DragMove();
         }
 
-        private void Window_StateChanged(object sender, EventArgs e) {
-            if (WindowState == WindowState.Maximized)
-                MaximizeWindow();
-            else
-                RestoreWindow();
-        }
-
-        private void RestoreWindow() {
-            Window window = Application.Current.MainWindow;
-
+        private void RestoreWindow(bool isDragging = true) {
             MaxHeight = double.PositiveInfinity;
             MaxWidth = double.PositiveInfinity;
-            Left = System.Windows.Forms.Cursor.Position.X - Width / 2;
-            Top = System.Windows.Forms.Cursor.Position.Y - WindowBar.Height / 2;
-            
-            window.WindowState = WindowState.Normal;
+
+            WindowState = WindowState.Normal;
+
+            if (isDragging) {
+                Left = System.Windows.Forms.Cursor.Position.X - Width/2;
+                Top = System.Windows.Forms.Cursor.Position.Y - WindowBar.Height/2;
+            } else {
+                Screen currentScreen = Screen.FromPoint(System.Windows.Forms.Cursor.Position);
+                Left = currentScreen.Bounds.Width / 2 - Width / 2;
+                Top = currentScreen.Bounds.Height / 2 - Height / 2;
+            }
         }
 
         private void MaximizeWindow() {
-            Window window = Application.Current.MainWindow;
-
             System.Drawing.Point pt = System.Windows.Forms.Cursor.Position;
             var currentScreen = Screen.FromPoint(pt);
             
@@ -77,7 +73,7 @@ namespace VideoStreamer {
                 Top = currentScreen.Bounds.Y;
             }
             
-            window.WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
         }
     }
 
