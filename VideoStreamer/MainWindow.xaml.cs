@@ -76,10 +76,39 @@ namespace VideoStreamer {
             vidPublishedDate.Content = "";
             vidDescription.Content = "";
 
-            YouTubeVideo video = new YouTubeVideo(textBox.Text);
+            string videoID = txtVideoID.Text;
+            YouTubeVideo video = new YouTubeVideo(videoID);
             vidTitle.Content = video.title;
             vidPublishedDate.Content = "Released on: " + video.publishedDate.ToString();
             vidDescription.Content = video.description;
+        }
+
+        private void btnGetPlaylist_Click (object sender, RoutedEventArgs e) {
+            Label lblLoading = new Label {
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Top,
+                Content = "Loading playlist...",
+                Foreground = Brushes.White,
+                Margin = new Thickness(0, 60, 10, 0)
+            };
+
+            AddUIElementToPanel( lblLoading, WindowContent );
+            string playlistID = txtPlaylistID.Text;
+            YouTubeVideo[] videos = YouTubeAPI.GetPlaylist(playlistID);
+            DeleteUIElementFromPanel(WindowContent.Children[WindowContent.Children.Count - 1], WindowContent);
+
+            int i = 0;
+            foreach (YouTubeVideo video in videos) {
+                Label label = new Label {
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Content = video.title,
+                    Foreground = Brushes.White,
+                    Margin = new Thickness(0, i++ * 20 + 60, 10, 0)
+                };
+
+                AddUIElementToPanel(label, WindowContent);
+            }
         }
 
         private void textBox_KeyDown (object sender, System.Windows.Input.KeyEventArgs e) {

@@ -50,23 +50,35 @@ namespace VideoStreamer {
         public static void GetVideoInfo(YouTubeVideo video) {
             VideosResource.ListRequest videoRequest = ytService.Videos.List("snippet");
             videoRequest.Id = video.id;
-
-            Console.Write("Executing video request...");
+            
             VideoListResponse response = videoRequest.Execute();
-            Console.WriteLine(" Done!");
             if (response.Items.Count > 0) {
-                Console.Write("Video found, processing...");
                 video.title = response.Items[0].Snippet.Title;
                 video.description = response.Items[0].Snippet.Description;
                 video.publishedDate = response.Items[0].Snippet.PublishedAt.Value;
-                Console.WriteLine(" Done!");
             } else {
-                Console.Write("Video NOT found, processing...");
                 video.title = "Video ID \"" + video.id + "\" not found...";
-                Console.WriteLine(" Done!");
             }
 
         }
 
+        public static YouTubeVideo[] GetPlaylist(string playlistId) {
+            var request = ytService.PlaylistItems.List("contentDetails");
+            request.PlaylistId = playlistId;
+
+            List<YouTubeVideo> videos = new List<YouTubeVideo>();
+
+            string nextPage = "";
+            while (nextPage != null) {
+                request.PageToken = nextPage;
+                var response = request.Execute();
+
+                videos.AddRange(response.Items.Select(t => new YouTubeVideo(t.ContentDetails.VideoId)));
+
+                nextPage = response.NextPageToken;
+            }
+
+            return videos.ToArray();
+        }
     }
 }

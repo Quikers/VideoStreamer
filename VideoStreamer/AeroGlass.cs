@@ -15,10 +15,16 @@ using Panel = System.Windows.Controls.Panel;
 namespace VideoStreamer {
 
     public partial class MainWindow : Window {
-        private void AddUIElementToPanel(UIElement uiElement, Panel panel, int rowIndex = 0, int columnIndex = 0) {
+        private void AddUIElementToPanel (UIElement uiElement, Panel panel, int rowIndex = 0, int columnIndex = 0) {
             Grid.SetRow(uiElement, rowIndex);
             Grid.SetColumn(uiElement, columnIndex);
             panel.Children.Add(uiElement);
+        }
+
+        private void DeleteUIElementFromPanel (UIElement uiElement, Panel panel, int rowIndex = 0, int columnIndex = 0) {
+            Grid.SetRow(uiElement, rowIndex);
+            Grid.SetColumn(uiElement, columnIndex);
+            panel.Children.Remove(uiElement);
         }
 
         private void Window_Loaded (object sender, RoutedEventArgs e) {

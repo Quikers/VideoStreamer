@@ -15,11 +15,13 @@
         </Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,31,0,0">
             <Grid x:Name="WindowContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="fhbm3s3P0l4" VerticalAlignment="Top" Width="120" Margin="10,10,0,0" KeyDown="textBox_KeyDown"/>
+                <TextBox x:Name="txtVideoID" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="fhbm3s3P0l4" VerticalAlignment="Top" Width="120" Margin="10,10,0,0" KeyDown="textBox_KeyDown"/>
                 <Button x:Name="btnGetVideo" Content="Get" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="39" Height="23" RenderTransformOrigin="0.321,0.45" Click="btnGetVideo_Click"/>
-                <Label x:Name="vidTitle" FontSize="20" Content="[YouTube Video Title]" Foreground="White" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="vidPublishedDate" Content="[YouTube Video Published Date]" Foreground="White" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="vidDescription" Content="[YouTube Video Description]" Foreground="White" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vidTitle" FontSize="20" Content="[YouTube Video Title]" Foreground="White" MaxWidth="600" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vidPublishedDate" Content="[YouTube Video Published Date]" Foreground="White" MaxWidth="600" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="vidDescription" Content="[YouTube Video Description]" Foreground="White" MaxWidth="600" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtPlaylistID" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="LLTmOv9nz4KzhwAKlHmqxpGg" VerticalAlignment="Top" Width="180" Margin="1089,12,0,0" RenderTransformOrigin="0.5,0.5"/>
+                <Button x:Name="btnGetPlaylist" Content="Get" HorizontalAlignment="Left" Margin="1038,10,0,0" VerticalAlignment="Top" Width="40" Height="23" RenderTransformOrigin="0.321,0.45" Click="btnGetPlaylist_Click"/>
             </Grid>
         </ScrollViewer>
     </Grid>
